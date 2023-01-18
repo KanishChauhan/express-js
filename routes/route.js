@@ -11,14 +11,22 @@ const router=express.Router()
 // console.log(blogs)
 
 router.route('/').get((req, res) => {
-    res.sendFile(path.join(__dirname, '../template/index.html'))
+    // res.sendFile(path.join(__dirname, '../template/index.html'))
+    res.render('home')
+    // res.render('home',{layout:false})
 })
+
+// router.route('/index').get((req, res) => {
+//     // res.sendFile(path.join(__dirname, '../template/index.html'))
+//     res.render('index')
+//     // res.render('home',{layout:false})
+// })
 
 router.route('/blog/:slug').get((req, res) => {
 
     const blog=blogs.filter((e)=>{return e.rollno==req.params.slug})
 //   console.log(bl)
-res.send(req.params.slug)
+res.render('blog',{blog:blog})
     // res.sendFile(path.join(__dirname, '../template/index.html'))
 
 })
